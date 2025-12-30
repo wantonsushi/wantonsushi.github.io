@@ -154,12 +154,13 @@ section h2::after {
     width: 150px;
     height: 105px;
     object-fit: cover;
-    border: 1px solid #ddd;
+    border: 2px solid var(--muted-color);
 }
 
 .pub-title {
     font-weight: 600;
     font-size: 0.85rem;
+    margin-top: 3px;
 }
 
 .pub-meta,
@@ -203,9 +204,36 @@ section h2::after {
 }
 
 /* ================================================================================ */
+/* Other */
+/* ================================================================================ */
+
+.other-group {
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+
+.other-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 6px;
+}
+
+.other-item {
+    font-size: 0.9rem;
+    margin-left: 15px;
+    margin-bottom: 4px;
+}
+
+.item-desc {
+    font-size: 0.9rem;
+    color: var(--muted-color);
+}
+
+/* ================================================================================ */
 /* Make mobile look less shit*/
 /* ================================================================================ */
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .header {
         flex-wrap: wrap;
         gap: 0;
