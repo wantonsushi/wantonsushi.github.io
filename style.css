@@ -118,6 +118,7 @@ section h2::after {
 
 .bio {
     font-size: 1.05rem;
+    padding-top: 8px;
 }
 
 .bio p {
