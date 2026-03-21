@@ -56,10 +56,15 @@ a:hover {
 /* ================================================================================ */
 .intro {
     display: grid;
-    grid-template-columns: 220px 240px 1fr;
-    gap: 20px;
+    grid-template-columns: 410px 1fr;
+    gap: 30px;
     margin-bottom: 25px;
     align-items: start;
+}
+
+.intro-left {
+    display: flex;
+    flex-direction: column;
 }
 
 .intro-wrapper::before,
@@ -76,22 +81,22 @@ section h2::after {
 }
 
 .profile-pic {
-    width: 220px;
+    width: 100%;
     border-radius: 4px;
     display: block;
-    margin: 0 auto;
 }
 
-.contact h3 {
-    font-size: 1.05rem;
-    margin-bottom: 10px;
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+    margin-top: 10px;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 6px;
+    gap: 8px;
 }
 
 .contact-item i {
@@ -100,19 +105,31 @@ section h2::after {
 }
 
 .contact-divider {
-    height: 1px;
+    height: 1.25px;
     background-color: var(--muted-color);
-    margin: 10px 0;
+    margin: 10px 0 4px;
 }
 
 .last-updated {
     font-size: 0.85rem;
     color: var(--muted-color);
-    margin-top: 10px;
+    margin-top: 0;
 }
 
 .bio {
     font-size: 1.05rem;
+}
+
+.bio p {
+    margin: 0 0 8px;
+}
+
+.bio ul {
+    margin: 0 0 8px;
+}
+
+.bio li {
+    margin-bottom: 0px;
 }
 
 /* ================================================================================ */
