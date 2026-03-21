@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sL https://use.fontawesome.com/releases/v6.6.0/fontawesome-free-6.6.0-web.zip -o /tmp/fa.zip)",
+      "Bash(unzip -q /tmp/fa.zip -d /tmp/fa)",
+      "Bash(cp /tmp/fa/fontawesome-free-6.6.0-web/css/all.min.css assets/fontawesome/css/)",
+      "Bash(cp /tmp/fa/fontawesome-free-6.6.0-web/webfonts/* assets/fontawesome/webfonts/)",
+      "Bash(rm -rf /tmp/fa /tmp/fa.zip)"
+    ]
+  }
+}

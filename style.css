@@ -4,7 +4,7 @@
     --muted-color: #666;
     --accent-color: #0077b6;
     --link-color: #0055aa;
-    --section-line-height: 2px;
+    --section-line-height: 3px;
 }
 
 body {
@@ -16,14 +16,8 @@ body {
     line-height: 1.5;
 }
 
-a {
-    color: var(--link-color);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
+a { color: var(--link-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
 .container {
     max-width: var(--max-width);
@@ -31,29 +25,12 @@ a:hover {
     padding: 0 20px 80px;
 }
 
-/* ================================================================================ */
 /* Header */
-/* ================================================================================ */
-.header {
-    display: flex;
-    align-items: baseline;
-    gap: 15px;
-}
+.header { display: flex; align-items: baseline; gap: 15px; }
+.name { font-size: 2.5rem; font-weight: 600; }
+.pronunciation { font-size: 1rem; color: var(--muted-color); }
 
-.name {
-    font-size: 2.5rem;
-    font-weight: 600;
-}
-
-.pronunciation {
-    font-size: 1rem;
-    color: var(--muted-color);
-    font-weight: 400;
-}
-
-/* ================================================================================ */
 /* Intro */
-/* ================================================================================ */
 .intro {
     display: grid;
     grid-template-columns: 410px 1fr;
@@ -62,10 +39,7 @@ a:hover {
     align-items: start;
 }
 
-.intro-left {
-    display: flex;
-    flex-direction: column;
-}
+.intro-left { display: flex; flex-direction: column; }
 
 .intro-wrapper::before,
 section h2::after {
@@ -75,16 +49,9 @@ section h2::after {
     background: linear-gradient(to right, var(--accent-color), #fbfaf8);
 }
 
-.intro-wrapper::before {
-    width: 890px;
-    margin-bottom: 15px;
-}
+.intro-wrapper::before { width: 890px; margin-bottom: 15px; }
 
-.profile-pic {
-    width: 100%;
-    border-radius: 4px;
-    display: block;
-}
+.profile-pic { width: 100%; border-radius: 4px; display: block; }
 
 .contact-grid {
     display: grid;
@@ -93,16 +60,8 @@ section h2::after {
     margin-top: 10px;
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.contact-item i {
-    font-size: 16px;
-    color: var(--text-color);
-}
+.contact-item { display: flex; align-items: center; gap: 8px; }
+.contact-item i { font-size: 16px; color: var(--text-color); }
 
 .contact-divider {
     height: 1.25px;
@@ -110,35 +69,13 @@ section h2::after {
     margin: 10px 0 4px;
 }
 
-.last-updated {
-    font-size: 0.85rem;
-    color: var(--muted-color);
-    margin-top: 0;
-}
+.last-updated { font-size: 0.85rem; color: var(--muted-color); }
 
-.bio {
-    font-size: 1.05rem;
-    padding-top: 8px;
-}
+.bio { font-size: 1.05rem; padding-top: 8px; }
+.bio p, .bio ul { margin: 0 0 10px; }
 
-.bio p {
-    margin: 0 0 10px;
-}
-
-.bio ul {
-    margin: 0 0 10px;
-}
-
-.bio li {
-    margin-bottom: 0px;
-}
-
-/* ================================================================================ */
 /* Sections */
-/* ================================================================================ */
-section {
-    margin-bottom: 25px;
-}
+section { margin-bottom: 25px; }
 
 section h2 {
     font-size: 1.4rem;
@@ -157,14 +94,11 @@ section h2::after {
     width: 890px;
 }
 
-/* ================================================================================ */
 /* Publications */
-/* ================================================================================ */
 .pub {
     display: grid;
     grid-template-columns: 160px 1fr;
     gap: 5px;
-    margin-bottom: 0;
     padding-left: 20px;
 }
 
@@ -175,30 +109,12 @@ section h2::after {
     border: 2px solid var(--muted-color);
 }
 
-.pub-title {
-    font-weight: 600;
-    font-size: 0.85rem;
-    margin-top: 3px;
-}
+.pub-title { font-weight: 600; font-size: 0.85rem; margin-top: 3px; }
+.pub-meta, .pub-links, .pub-desc { font-size: 0.85rem; color: var(--muted-color); }
 
-.pub-meta,
-.pub-links,
-.pub-desc {
-    font-size: 0.85rem;
-    color: var(--muted-color);
-}
-
-/* ================================================================================ */
-/* Lists */
-/* ================================================================================ */
-.item {
-    margin-bottom: 15px;
-    margin-left: 25px;
-}
-
-.item-title {
-    font-weight: 600;
-}
+/* Items */
+.item { margin-bottom: 15px; margin-left: 25px; }
+.item-title { font-weight: 600; }
 
 .item-meta {
     display: flex;
@@ -207,81 +123,22 @@ section h2::after {
     color: var(--muted-color);
 }
 
-.item-location,
-.item-dates {
-    white-space: nowrap;
-}
+.item-location, .item-dates { white-space: nowrap; }
 
-.education-item .edu-details {
-    margin-left: 20px;
-    font-size: 0.95rem;
-}
-
-.education-item .edu-details div {
-    margin-bottom: 0;
-}
-
-/* ================================================================================ */
 /* Other */
-/* ================================================================================ */
+.other-group { margin-left: 25px; margin-bottom: 15px; }
+.other-label { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
 
-.other-group {
-    margin-left: 25px;
-    margin-bottom: 15px;
-}
-
-.other-label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-color);
-    margin-bottom: 6px;
-}
-
-.other-item {
-    font-size: 0.9rem;
-    margin-left: 15px;
-    margin-bottom: 4px;
-}
-
-.item-desc {
-    font-size: 0.9rem;
-    color: var(--muted-color);
-}
-
-/* ================================================================================ */
-/* Make mobile look less shit*/
-/* ================================================================================ */
+/* Mobile */
 @media (max-width: 800px) {
-    .header {
-        flex-wrap: wrap;
-        gap: 0;
-    }
-
-    .pronunciation {
-        margin-bottom: 15px;
-    }
-
-    .intro {
-        grid-template-columns: 1fr;
-    }
-
-    .pub {
-        grid-template-columns: 1fr;
-    }
-
-    .pub img {
-        display: block;
-        margin: 0 auto 0px auto;
-    }
-
-    .pub > div {
-        text-align: left;
-    }
+    .header { flex-wrap: wrap; gap: 0; }
+    .pronunciation { margin-bottom: 15px; }
+    .intro { grid-template-columns: 1fr; }
+    .pub { grid-template-columns: 1fr; }
+    .pub img { display: block; margin: 0 auto; }
 
     section h2::after,
-    .intro-wrapper::before {
-        width: 90vw;
-    }
+    .intro-wrapper::before { width: 90vw; }
 
     .item-meta {
         flex-direction: column;
@@ -289,8 +146,5 @@ section h2::after {
         gap: 2px;
     }
 
-    .item-location,
-    .item-dates {
-        white-space: normal;
-    }
+    .item-location, .item-dates { white-space: normal; }
 }
