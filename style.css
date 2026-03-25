@@ -49,7 +49,7 @@ section h2::after {
     background: linear-gradient(to right, var(--accent-color), #fbfaf8);
 }
 
-.intro-wrapper::before { width: 890px; margin-bottom: 15px; }
+.intro-wrapper::before { width: min(890px, 100%); margin-bottom: 15px; }
 
 .profile-pic { width: 100%; border-radius: 4px; display: block; }
 
@@ -91,7 +91,7 @@ section h2::after {
     left: 0;
     bottom: -4px;
     z-index: -1;
-    width: 890px;
+    width: min(890px, calc(100vw - 40px));
 }
 
 /* Publications */
@@ -138,7 +138,7 @@ section h2::after {
     .pub img { display: block; margin: 0 auto; }
 
     section h2::after,
-    .intro-wrapper::before { width: 90vw; }
+    .intro-wrapper::before { width: calc(100vw - 40px); }
 
     .item-meta {
         flex-direction: column;
@@ -147,4 +147,10 @@ section h2::after {
     }
 
     .item-location, .item-dates { white-space: normal; }
+
+    .profile-pic { max-width: 480px; margin: 0 auto; }
+}
+
+@media (max-width: 440px) {
+    .contact-item { word-break: break-all; }
 }
