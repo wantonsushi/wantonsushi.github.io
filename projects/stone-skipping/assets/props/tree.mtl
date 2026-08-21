@@ -1,0 +1,8 @@
+newmtl bark
+Kd 0.3 0.22 0.15
+
+newmtl foliage_low
+Kd 0.2 0.36 0.16
+
+newmtl foliage_high
+Kd 0.27 0.45 0.2

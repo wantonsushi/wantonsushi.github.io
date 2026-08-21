@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Rendering Engine - Euan Hughes</title>
+    <meta name="description" content="A from-scratch rendering research playground for prototyping advanced algorithms.">
+    <link rel="icon" type="image/webp" href="../../assets/images/pfp.webp">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (t !== 'light' && t !== 'dark')
+                    t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../article.css">
+    <script src="../../assets/nav.js"></script>
+</head>
+<body>
+
+<site-nav home="../../"></site-nav>
+
+<main class="pa-root">
+
+    <h1 class="pa-title">Research Rendering Engine (Self-Importance Samplers)</h1>
+
+    <div class="pa-body">
+        <p>This engine started as the renderer I wrote for my graduate Photorealistic Rendering Algorithms
+        class. The final project was a rendering competition which my teammate
+        <a href="https://www.linkedin.com/in/mgeorgy61/" target="_blank" rel="noopener">Matthew Georgy</a>
+        and I <a href="https://profs.etsmtl.ca/agruson/competition/2025/" target="_blank" rel="noopener">won</a>!
+        The highlight of the engine was a multiplexed Metropolis Light Transport (MMLT) integrator (which I
+        later built <a href="../metropolis-visualizer/">an interactive visualizer</a> for) that also handles 
+        homogeneous volumes.</p>
+
+        <p>If you want to know more about what went into the competition entry, here are the 
+        <a href="../../assets/SelfImp_RenderingA2025_Beamer.pdf" target="_blank" rel="noopener">slides from our presentation</a>.</p>
+
+        <p>Since finishing the class, I've occasionally extended it and used it as a place to prototype and learn new
+        algorithms. Generally I prefer to implement things in <a href="../mr-sanders/">mr-sanders</a>, my
+        production-style renderer. But for things that aren't really appropriate for a production renderer yet
+        are still interesting (e.g. complex light transport like gradient-domain or bidirectional methods), I'll use
+        this engine to experiment instead.</p>
+
+        <h2>Favourite renders</h2>
+        <p>Below are some of my favourite renders generated using this engine!</p>
+
+        <div class="pa-gallery">
+            <a href="renders/final.webp" target="_blank" rel="noopener"><img src="renders/final.webp" loading="lazy"></a>
+            <a href="renders/veach_MMLT.webp" target="_blank" rel="noopener"><img src="renders/veach_MMLT.webp" loading="lazy"></a>
+            <a href="renders/aquarium_MLT.webp" target="_blank" rel="noopener"><img src="renders/aquarium_MLT.webp" loading="lazy"></a>
+            <a href="renders/water_caustic_BDPT.webp" target="_blank" rel="noopener"><img src="renders/water_caustic_BDPT.webp" loading="lazy"></a>
+            <a href="renders/glass_of_water_BDPT.webp" target="_blank" rel="noopener"><img src="renders/glass_of_water_BDPT.webp" loading="lazy"></a>
+            <a href="renders/veach_ajar_MLT.webp" target="_blank" rel="noopener"><img src="renders/veach_ajar_MLT.webp" loading="lazy"></a>
+            <a href="renders/pfp.webp" target="_blank" rel="noopener"><img src="renders/pfp.webp" loading="lazy"></a>
+            <a href="renders/extra_bsdfs.webp" target="_blank" rel="noopener"><img src="renders/extra_bsdfs.webp" loading="lazy"></a>
+            <a href="renders/perlin3.webp" target="_blank" rel="noopener"><img src="renders/perlin3.webp" loading="lazy"></a>
+            <a href="renders/wallpaper.webp" target="_blank" rel="noopener"><img src="renders/wallpaper.webp" loading="lazy"></a>
+            <a href="renders/dir_light.webp" target="_blank" rel="noopener"><img src="renders/dir_light.webp" loading="lazy"></a>
+        </div>
+    </div>
+
+    <footer class="pa-refs">
+        <h2>References</h2>
+        <ol>
+            <li>Several scenes were recreated using assets from Benedikt Bitterli's
+                <i>Rendering Resources</i> (2016).
+                <a href="https://benedikt-bitterli.me/resources/" target="_blank" rel="noopener">benedikt-bitterli.me/resources</a></li>
+        </ol>
+    </footer>
+
+</main>
+</body>
+</html>

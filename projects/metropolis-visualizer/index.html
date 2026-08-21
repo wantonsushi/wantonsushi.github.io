@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metropolis Light Transport Visualizer - Euan Hughes</title>
+    <meta name="description" content="An interactive, real-time visualization of Metropolis Light Transport.">
+    <link rel="icon" type="image/webp" href="../../assets/images/pfp.webp">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (t !== 'light' && t !== 'dark')
+                    t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../article.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../assets/nav.js"></script>
+</head>
+<body>
+
+<site-nav home="../../" name-id="mv-back"></site-nav>
+
+<main class="pa-root">
+    <section id="mv-config-root"></section>
+    <section id="mv-live-root" hidden></section>
+</main>
+
+<noscript><p style="padding:2rem">This visualizer needs JavaScript.</p></noscript>
+
+<script type="module" src="ui/main.js"></script>
+</body>
+</html>

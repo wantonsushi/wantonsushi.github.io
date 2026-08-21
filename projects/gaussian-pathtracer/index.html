@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Differentiable 3D Gaussian Volumetric Pathtracer - Euan Hughes</title>
+    <meta name="description" content="A differentiable volumetric path tracer using 3D Gaussians in a faithful radiative-transfer formulation.">
+    <link rel="icon" type="image/webp" href="../../assets/images/pfp.webp">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (t !== 'light' && t !== 'dark')
+                    t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../article.css">
+    <script src="../../assets/nav.js"></script>
+</head>
+<body>
+
+<site-nav home="../../"></site-nav>
+
+<main class="pa-root">
+
+    <h1 class="pa-title">Differentiable 3D Gaussian Volumetric Pathtracer</h1>
+
+    <div class="pa-body">
+        <p>This project is a differentiable volumetric path tracer based on the paper <a href="https://arcanous98.github.io/projectPages/gaussianVolumes.html" target="_blank" rel="noopener"><em>Don't Splat your Gaussians</em></a>. 
+        Their model represents participating media as 3D Gaussians in a formulation more faithful to the <a href="https://en.wikipedia.org/wiki/Radiative_transfer" target="_blank" rel="noopener">radiative-transfer-equation</a> (RTE). 
+        I implemented their volumetric pathtracer from scratch in a minimal renderer for a directed-readings course and it was originally
+        going to be the topic of my Master's thesis (before I shifted topics).</p>
+
+        <p>The motivation was compression: a mixture of a few thousand Gaussians can stand in for a
+            dense VDB volume at a fraction of the memory, and the formulation does not give up physical
+            accuracy.
+        </p>
+
+        <p>
+        The main limitation is being able to generate a good Gaussian mixture from a VDB quickly.
+        For this reason, I implemented <strong>(weighted) stochastic Expectation-Maximization</strong> to fit a
+        VDB into a Gaussian mixture. That fit is then refined against reference renders through the differentiable pipeline to create
+        the most faithful reconstruction.
+        </p>
+
+        <h2>Renders</h2>
+        <p>All renders at 256&nbsp;spp. Use the arrows to scroll and compare; render times and memory are
+        in the table below.
+        </p>
+
+        <p>The VDB reference uses delta tracking, ratio tracking, and DDA traversal of a per-brick
+        majorant grid, whereas the Gaussians have closed-form optical depth and are sampled analytically, similar to regular tracking.
+        </p>
+
+        <figure class="gal gal-square" aria-label="Gaussian vs VDB renders">
+            <ul class="gal-track">
+                <li class="gal-slide is-active" data-label="Delta/Ratio-tracking VDB bunny reference"><img src="renders/vdb.webp"  width="512" height="512" loading="eager" decoding="async"></li>
+                <li class="gal-slide" aria-hidden="true" data-label="VDB bunny compressed as 400 Gaussians"><img src="renders/g400.webp" width="512" height="512" loading="lazy" decoding="async"></li>
+                <li class="gal-slide" aria-hidden="true" data-label="VDB bunny compressed as 4k Gaussians"><img src="renders/g4k.webp"  width="512" height="512" loading="lazy" decoding="async"></li>
+                <li class="gal-slide" aria-hidden="true" data-label="VDB bunny compressed as 40k Gaussians"><img src="renders/g40k.webp" width="512" height="512" loading="lazy" decoding="async"></li>
+                <li class="gal-slide" aria-hidden="true" data-label="VDB downsampled to the 40k-Gaussian size (~44&times; smaller)"><img src="renders/vdb44x.webp" width="512" height="512" loading="lazy" decoding="async"></li>
+                <li class="gal-slide" aria-hidden="true" data-label="10k random Gaussians"><img src="renders/r10k.webp" width="512" height="512" loading="lazy" decoding="async"></li>
+            </ul>
+            <button class="gal-nav gal-prev" type="button" aria-label="Previous render">&laquo;</button>
+            <button class="gal-nav gal-next" type="button" aria-label="Next render">&raquo;</button>
+        </figure>
+        <p class="gal-from">Showing: <span class="gal-label-name">Delta-tracking VDB (reference)</span></p>
+
+        <h2>Compression</h2>
+        <p>The reference is the Stanford Bunny VDB: 19.2&nbsp;million active voxels, ~73&nbsp;MB of float
+        density. Each Gaussian instead needs just 11 floats (mean, covariance, density, albedo =
+        44&nbsp;bytes), so the fits are up to thousands of times smaller and render much faster; 
+        all while solving the RTE with no simplifying assumptions.
+        </p>
+
+        <p>The last bunny is the VDB itself downsampled to the same ~1.7&nbsp;MB memory footprintas the 40k-Gaussian fit. 
+        The quality is comparable but the Gaussian fit is more efficient to render. Timings were recorded on an Intel Core i7-13700H (14 cores / 20 threads).</p>
+
+        <table class="pa-table">
+            <thead>
+                <tr><th>Representation</th><th>Primitives</th><th>Size</th><th>vs VDB</th><th>Render</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Delta-tracking VDB (reference)</td><td>19.2M voxels</td><td>73&nbsp;MB</td><td>&mdash;</td><td>4&nbsp;min&nbsp;29&nbsp;s</td></tr>
+                <tr><td>400 Gaussians</td><td>400</td><td>17&nbsp;KB</td><td>~4,400&times; smaller</td><td>39&nbsp;s</td></tr>
+                <tr><td>4k Gaussians</td><td>4,000</td><td>172&nbsp;KB</td><td>~440&times; smaller</td><td>1&nbsp;min&nbsp;28&nbsp;s</td></tr>
+                <tr><td>40k Gaussians</td><td>40,000</td><td>1.7&nbsp;MB</td><td>~44&times; smaller</td><td>3&nbsp;min&nbsp;12&nbsp;s</td></tr>
+                <tr><td>VDB downsampled to 40k size</td><td>452k voxels</td><td>1.7&nbsp;MB</td><td>~44&times; smaller</td><td>4&nbsp;min&nbsp;34&nbsp;s</td></tr>
+                <tr><td>10k random Gaussians</td><td>10,000</td><td>430&nbsp;KB</td><td>&mdash;</td><td>47&nbsp;s</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer class="pa-refs">
+        <h2>References</h2>
+        <ol>
+            <li>Condor, J., Speierer, S., Bode, L., Bo&#382;i&#269;, A., Green, S., Didyk, P., and Jarabo, A.
+                <i>Don't Splat your Gaussians: Volumetric Ray-Traced Primitives for Modeling and Rendering
+                Scattering and Emissive Media.</i> ACM Transactions on Graphics, 2024.
+                <a href="https://arcanous98.github.io/projectPages/gaussianVolumes.html" target="_blank" rel="noopener">project page</a> &middot;
+                <a href="https://arxiv.org/abs/2405.15425" target="_blank" rel="noopener">arXiv</a> &middot;
+                <a href="https://doi.org/10.1145/3711853" target="_blank" rel="noopener">DOI</a></li>
+            <li>Kerbl, B., Kopanas, G., Leimk&uuml;hler, T., and Drettakis, G.
+                <i>3D Gaussian Splatting for Real-Time Radiance Field Rendering.</i>
+                ACM Transactions on Graphics, 2023 &mdash; the work that popularised 3D Gaussians
+                as a scene representation (here ray-traced as volumes rather than splatted).
+                <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" target="_blank" rel="noopener">project page</a> &middot;
+                <a href="https://arxiv.org/abs/2308.04079" target="_blank" rel="noopener">arXiv</a> &middot;
+                <a href="https://doi.org/10.1145/3592433" target="_blank" rel="noopener">DOI</a></li>
+            <li>The bunny volume is the <i>Stanford Bunny</i> cloud from the
+                <a href="https://www.openvdb.org/download/" target="_blank" rel="noopener">OpenVDB sample models</a>.</li>
+        </ol>
+    </footer>
+
+</main>
+
+<script>
+    // Single-image carousel: scroll through renders
+    (function () {
+        const gal = document.querySelector('.gal');
+        if (!gal) return;
+        const slides = [...gal.querySelectorAll('.gal-slide')];
+        const labelName = document.querySelector('.gal-label-name');
+        let i = 0;
+
+        function label(slide) {
+            if (labelName) labelName.textContent = slide.dataset.label;
+        }
+        function show(n) {
+            slides[i].classList.remove('is-active');
+            slides[i].setAttribute('aria-hidden', 'true');
+            i = (n + slides.length) % slides.length;
+            slides[i].classList.add('is-active');
+            slides[i].removeAttribute('aria-hidden');
+            label(slides[i]);
+        }
+        gal.querySelector('.gal-prev').addEventListener('click', () => show(i - 1));
+        gal.querySelector('.gal-next').addEventListener('click', () => show(i + 1));
+        label(slides[i]);
+    })();
+</script>
+</body>
+</html>

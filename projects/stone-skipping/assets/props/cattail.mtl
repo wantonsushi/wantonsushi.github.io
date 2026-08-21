@@ -1,0 +1,11 @@
+newmtl reed_base
+Kd 0.2 0.3 0.14
+
+newmtl reed_mid
+Kd 0.31 0.45 0.2
+
+newmtl reed_tip
+Kd 0.46 0.57 0.27
+
+newmtl cattail_head
+Kd 0.33 0.21 0.11

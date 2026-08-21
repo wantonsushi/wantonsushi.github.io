@@ -1,0 +1,123 @@
+/* Project pages: article layout shared by everything under projects/. */
+
+.pa-root {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+}
+
+.pa-title {
+    font-size: clamp(1.7rem, 4vw, 2.1rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 6px 0 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pa-root h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 30px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pa-root h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 20px 0 6px;
+}
+
+.pa-body p { margin: 0 0 14px; }
+.pa-body ul, .pa-body ol { margin: 0 0 14px; padding-left: 1.4em; }
+.pa-body li { margin: 4px 0; }
+.pa-body code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--surface-tint);
+    border: 1px solid var(--border-color);
+    padding: 0 4px;
+}
+
+.pa-figure { margin: 20px 0; }
+.pa-figure img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border-color);
+}
+.pa-figure figcaption {
+    margin-top: 6px;
+    font-size: 0.88rem;
+    color: var(--muted-color);
+    max-width: 70ch;
+}
+.pa-figure .pa-img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    background: var(--surface-tint);
+    border: 1px solid var(--border-color);
+    color: var(--muted-color);
+    font-size: 0.9rem;
+}
+
+/* Render gallery */
+.pa-gallery {
+    column-width: 300px;
+    column-gap: 12px;
+    margin: 20px 0;
+}
+.pa-gallery a {
+    display: block;
+    break-inside: avoid;
+    margin-bottom: 12px;
+    text-decoration: none;
+}
+.pa-gallery img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-color);
+}
+
+/* Square carousel (shares .gal from style.css) */
+.gal-square { aspect-ratio: 1 / 1; max-width: 640px; margin: 16px auto 0; }
+.gal-square .gal-slide img { object-fit: contain; background: var(--gal-panel); }
+
+/* Comparison table */
+.pa-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.92rem;
+}
+.pa-table th, .pa-table td {
+    text-align: left;
+    padding: 6px 12px 6px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.pa-table th { font-weight: 600; }
+.pa-table tbody tr:first-child td { color: var(--muted-color); } /* reference row */
+
+.pa-refs {
+    margin: 40px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color);
+    color: var(--muted-color);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+.pa-refs h2 { margin-top: 0; border-bottom: none; padding-bottom: 0; }
+.pa-refs p { margin: 0 0 8px; }
+.pa-refs ul, .pa-refs ol { margin: 0; padding-left: 1.4em; }
+.pa-refs li { margin: 6px 0; }
+.pa-refs a { word-break: break-word; }
+.pa-refs-head { margin-top: 14px; }
+
+@media (max-width: 800px) {
+    .pa-root { padding-top: 20px; }
+}

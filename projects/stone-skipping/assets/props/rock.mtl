@@ -1,0 +1,5 @@
+newmtl rock
+Kd 0.54 0.53 0.49
+
+newmtl rock_moss
+Kd 0.34 0.4 0.25

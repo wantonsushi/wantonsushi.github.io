@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr-Sanders - Euan Hughes</title>
+    <meta name="description" content="A production-style Monte Carlo renderer written from scratch in C++20.">
+    <link rel="icon" type="image/webp" href="../../assets/images/pfp.webp">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (t !== 'light' && t !== 'dark')
+                    t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../article.css">
+    <script src="../../assets/nav.js"></script>
+</head>
+<body>
+
+<site-nav home="../../"></site-nav>
+
+<main class="pa-root">
+
+    <h1 class="pa-title">mr-sanders</h1>
+
+    <div class="pa-body">
+        <p>mr-sanders is a "production-style" Monte Carlo rendering engine written from scratch in C++20. Unlike research
+        renderers, the priority is artist usability: fast interactive feedback, a broad feature set, and as few
+        technical controls as possible. Heavy emphasis was also placed on developer tooling: profiling, logging,
+        diagnostics, and testing tools for performance and correctness.</p>
+
+        <p>This is my biggest project to date. I've tried to combine everything I've learned about rendering
+            and software engineering into a single robust, genuinely usable renderer.
+        </p>
+
+        <p>It is named after my first cat. 🐱</p>
+
+        <p>
+            The current roadmap is to finish full Blender compatibility, and then adding GPU/XPU support.
+        </p>
+
+        <h2>Notable Features</h2>
+
+        <h3>Interactive</h3>
+        <ul>
+            <li>Render preview window with progressive refinement.</li>
+            <li>Interactive camera (<code>-ipr</code>): fly through the scene with WASD / mouse while it renders.</li>
+        </ul>
+
+        <h3>Geometry</h3>
+        <ul>
+            <li>Triangle meshes, spheres, quads, disks.</li>
+            <li>Curves / hair: B-spline strands (ribbon / thick / oriented).</li>
+            <li><a href="https://github.com/RenderKit/embree" target="_blank" rel="noopener">Embree 4</a> BVH acceleration: hardware-optimised ray traversal and multi-level instancing.</li>
+            <li>Catmull-Clark subdivision with adaptive dicing (<a href="https://github.com/PixarAnimationStudios/OpenSubdiv" target="_blank" rel="noopener">OpenSubdiv</a>).</li>
+            <li>Scalar displacement mapping, per-object ray visibility masks.</li>
+            <li>3D Gaussian splats.</li>
+            <li>Heterogeneous volumes (fog, atmosphere, <a href="https://www.openvdb.org/" target="_blank" rel="noopener">OpenVDB</a> / <a href="https://developer.nvidia.com/nanovdb" target="_blank" rel="noopener">NanoVDB</a>) with the Henyey-Greenstein phase function.</li>
+            <li>Emissive volumes with physically-based blackbody / thermal radiation.</li>
+            <li>Volume motion blur from VDB velocity fields (Eulerian semi-Lagrangian advection).</li>
+        </ul>
+
+        <h3>Shading</h3>
+        <ul>
+            <li>Full <a href="https://github.com/AcademySoftwareFoundation/OpenShadingLanguage" target="_blank" rel="noopener">Open Shading Language (OSL)</a> integration: JIT-compiled, thread-safe shader networks.</li>
+            <li><a href="https://academysoftwarefoundation.github.io/OpenPBR/" target="_blank" rel="noopener">OpenPBR</a> surface shader (full spec).</li>
+            <li>Physically-based hair BCSDF (<a href="https://benedikt-bitterli.me/pchfm/" target="_blank" rel="noopener">Chiang et al. 2016</a>).</li>
+            <li><a href="https://materialx.org/" target="_blank" rel="noopener">MaterialX</a> support: <code>.mtlx</code> networks compiled to OSL and mapped onto native lobes.</li>
+            <li>Procedural metallic-flakes shader and procedural textures (noise, image, checkerboard, normal map, displacement).</li>
+            <li>Programmable shaders: scenes can reference <code>.osl</code> on disk with no recompile.</li>
+            <li>Texture system with caching, mipmapping, and filtering (<a href="https://github.com/AcademySoftwareFoundation/OpenImageIO" target="_blank" rel="noopener">OIIO</a>).</li>
+            <li>Nested dielectric medium priority stack.</li>
+        </ul>
+
+        <h3>Lighting &amp; sampling</h3>
+        <ul>
+            <li>Point, distant, spot, area (quad / disk / sphere / mesh), skydome (lat-long HDR), and <a href="https://ieslibrary.com/" target="_blank" rel="noopener">IES photometric</a> lights.</li>
+            <li><a href="https://fpsunflower.github.io/ckulla/data/many-lights-hpg2018.pdf" target="_blank" rel="noopener">Light-tree importance sampling</a> for many-light scenes.</li>
+            <li>Sobol quasi-random sampling (<a href="https://github.com/AcademySoftwareFoundation/openqmc" target="_blank" rel="noopener">OpenQMC</a>).</li>
+            <li>Next event estimation + MIS, Russian roulette.</li>
+            <li>Delta tracking and ratio tracking for participating media.</li>
+            <li>Adaptive sampling: per-pixel error-driven termination.</li>
+            <li>Filter importance sampling with box, Gaussian, and windowed-sinc reconstruction filters.</li>
+            <li>A "one-click" <strong>Caustics Solver</strong> (<a href="https://fpsunflower.github.io/ckulla/data/egsr_2020_caustics.pdf" target="_blank" rel="noopener">Conty &amp; Kulla 2020</a>): guided photon mapping with photon beams for difficult light paths.</li>
+        </ul>
+
+        <h3>Camera</h3>
+        <ul>
+            <li>Perspective and orthographic, thin-lens depth of field, aperture blades.</li>
+            <li>Linear camera and object motion blur.</li>
+            <li>Ray differentials for texture filtering.</li>
+        </ul>
+
+        <h3>Colour &amp; output</h3>
+        <ul>
+            <li><a href="https://opencolorio.org/" target="_blank" rel="noopener">OpenColorIO</a> colour management: ACEScg render space, configurable display / view transforms.</li>
+            <li>EXR, PNG, JPEG, TIFF, HDR and more (OIIO).</li>
+            <li>AOVs: normal, albedo, depth, emission, background, direct / indirect lighting, raycount, cputime.</li>
+            <li><a href="https://github.com/Psyop/Cryptomatte" target="_blank" rel="noopener">Cryptomatte</a> (v1.2) for per-object / material ID mattes.</li>
+            <li><a href="https://www.openimagedenoise.org/" target="_blank" rel="noopener">Intel Open Image Denoise</a> using albedo / normal guide buffers.</li>
+        </ul>
+
+        <h3>Developer tooling</h3>
+        <ul>
+            <li>GoogleTest suite, Tracy profiler instrumentation.</li>
+            <li>Structured logging, CPU / memory diagnostics, per-render stat accumulators.</li>
+        </ul>
+
+        <h2>Renders</h2>
+        <p><em>Coming soon...</em></p>
+    </div>
+
+</main>
+</body>
+</html>

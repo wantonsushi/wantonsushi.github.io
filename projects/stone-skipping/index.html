@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stone Skipping Physics Simulation - Euan Hughes</title>
+    <meta name="description" content="An interactive, real-time, physically-based simulation of a stone skipping on a water surface.">
+    <link rel="icon" type="image/webp" href="../../assets/images/pfp.webp">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (t !== 'light' && t !== 'dark')
+                    t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../article.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../assets/nav.js"></script>
+</head>
+<body>
+
+<site-nav home="../../" name-id="ss-back"></site-nav>
+
+<main class="pa-root">
+
+    <section id="ss-config-root">
+        <h1 class="pa-title">Stone Skipping Physics Simulation</h1>
+
+        <div class="pa-body">
+            <p>The original idea for this project started as my fourth-year graphics final project
+            (the first graphics course I ever took!). I got a good mark, but I always felt
+            this project deserved revisiting. The renderer was a CPU software rasteriser I'd written from scratch, 
+            so it was painfully slow, and the scene I could afford to render was not particularly visually pleasing. 
+            In v2, I have rebuilt it on WebGL. It's orders of magnitude faster and much nicer to look at.</p>
+
+            <p>The model is based on Bocquet 2003, with a small modification to how torque is applied. The model is
+                summarized in <a href="stone-skipping-physics.pdf" target="_blank" rel="noopener">this document</a>.
+            </p>
+        </div>
+
+        <p class="ss-desktop-rec">For the best experience, please try this demo on a computer.</p>
+        <p id="ss-warn" class="ss-warn" hidden>WebGL2 is unavailable in this browser. Try a recent Chrome, Edge, or Safari.</p>
+        <button id="ss-start" class="ss-launch-gate">Start simulation</button>
+
+        <footer class="pa-refs">
+            <h2>References</h2>
+            <ol>
+                <li>Bocquet, L. The physics of stone skipping. <i>Am. J. Phys.</i> 71, 150 (2003).
+                    <a href="https://arxiv.org/abs/physics/0210015" target="_blank" rel="noopener">arXiv</a></li>
+                <li>Bocquet, L., Rosellini, L., Hersen, F. &amp; Clanet, C. Skipping stones.
+                    <i>J. Fluid Mech.</i> 543 (2005).</li>
+                <li>Clanet, C., Hersen, F. &amp; Bocquet, L. Secrets of successful stone-skipping.
+                    <i>Nature</i> 427, 29 (2004).</li>
+                <li>Nagahiro, S. &amp; Hayakawa, Y. A theoretical and numerical approach to the
+                    "magic angle" of stone skipping. (2004).
+                    <a href="https://arxiv.org/abs/physics/0411125" target="_blank" rel="noopener">arXiv</a></li>
+                <li>von Kármán, T. The impact on seaplane floats during landing.
+                    <i>NACA TN 321</i> (1930).</li>
+            </ol>
+        </footer>
+    </section>
+
+    <section id="ss-live-root" hidden></section>
+
+</main>
+
+<noscript><p style="padding:2rem">This simulation needs JavaScript.</p></noscript>
+<script type="module" src="main.js"></script>
+</body>
+</html>

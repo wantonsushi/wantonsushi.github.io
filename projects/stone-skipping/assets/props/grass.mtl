@@ -1,0 +1,8 @@
+newmtl grass_base
+Kd 0.3 0.4 0.2
+
+newmtl grass_mid
+Kd 0.4 0.53 0.25
+
+newmtl grass_tip
+Kd 0.53 0.67 0.32

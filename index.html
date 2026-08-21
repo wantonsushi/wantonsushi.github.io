@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euan Hughes</title>
+    <meta name="description" content="Euan Hughes - MASc candidate in computer graphics at ÉTS. A rendering person.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://wantonsushi.github.io/">
+    <link rel="icon" type="image/webp" href="assets/images/pfp.webp">
+    <link rel="apple-touch-icon" href="assets/images/pfp.webp">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (t !== 'light' && t !== 'dark')
+                    t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <script src="assets/nav.js"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Euan Hughes",
+        "url": "https://wantonsushi.github.io",
+        "sameAs": [
+            "https://github.com/wantonsushi",
+            "https://www.linkedin.com/in/euan-hughes"
+        ]
+    }
+    </script>
+</head>
+<body>
+
+<site-nav></site-nav>
+
+<div class="container">
+
+    <header class="header" id="top">
+        <div class="header-name">
+            <div class="name">Euan Hughes</div>
+            <div class="pronunciation">(pronounced "you-win" 😎)</div>
+        </div>
+        <p class="hero-tagline">MASc Candidate in Computer Graphics @ ÉTS</p>
+
+        <p class="contact-row">
+            <a href="mailto:euan.hughes.1@ens.etsmtl.ca">euan.hughes.1@ens.etsmtl.ca</a><span class="sep">·</span><a href="https://github.com/wantonsushi" target="_blank" rel="noopener noreferrer">GitHub</a><span class="sep">·</span><a href="https://linkedin.com/in/euan-hughes" target="_blank" rel="noopener noreferrer">LinkedIn</a><span class="sep">·</span><a href="assets/my_CV.pdf" target="_blank" rel="noopener noreferrer">CV (PDF)</a>
+        </p>
+
+        <!-- <p class="status-line"><strong>Applying to PhD programs and full-time roles starting May-September 2027.</strong></p> -->
+        <div class="hero-rule"></div>
+        <p class="last-updated">Last updated <span id="last-updated"></span></p>
+    </header>
+
+    <section id="gallery">
+        <p class="gal-caption">Selected renders from my renderers and projects.</p>
+        <figure class="gal" aria-label="Selected renders">
+            <ul class="gal-track">
+                <li class="gal-slide is-active" data-engine="Research Rendering Engine" data-href="projects/rendering-engine/"><img src="projects/rendering-engine/renders/final.webp" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async"></li>
+                <li class="gal-slide" aria-hidden="true" data-engine="Research Rendering Engine" data-href="projects/rendering-engine/"><img src="projects/rendering-engine/renders/wallpaper.webp" width="1920" height="800" loading="lazy" decoding="async"></li>
+                <li class="gal-slide" aria-hidden="true" data-engine="Differentiable 3D Gaussian Volumetric Pathtracer" data-href="projects/gaussian-pathtracer/"><img src="projects/gaussian-pathtracer/renders/g40k_hero.webp" width="1536" height="1024" loading="lazy" decoding="async"></li>
+                <li class="gal-slide" aria-hidden="true" data-engine="Stone Skipping Physics Simulation" data-href="projects/stone-skipping/"><img src="projects/stone-skipping/renders/skip.webp" width="1420" height="890" loading="lazy" decoding="async"></li>
+                <li class="gal-slide" aria-hidden="true" data-engine="Metropolis Light Transport Visualizer" data-href="projects/metropolis-visualizer/"><img src="projects/metropolis-visualizer/renders/mlt-paths.webp" width="1270" height="910" loading="lazy" decoding="async"></li>
+            </ul>
+            <button class="gal-nav gal-prev" type="button" aria-label="Previous render">&laquo;</button>
+            <button class="gal-nav gal-next" type="button" aria-label="Next render">&raquo;</button>
+        </figure>
+        <p class="gal-from">From: <a class="gal-from-link" href="projects/rendering-engine/">Research Rendering Engine</a></p>
+    </section>
+
+    <section id="about">
+        <h2>About</h2>
+        <div class="bio">
+            <p>I am a MASc candidate in computer graphics at <a href="https://www.etsmtl.ca/" target="_blank" rel="noopener noreferrer">ÉTS</a> under the supervision of <a href="https://profs.etsmtl.ca/agruson/" target="_blank" rel="noopener noreferrer">Prof. Adrien Gruson</a> and <a href="https://profs.etsmtl.ca/epaquette/index_english.html" target="_blank" rel="noopener noreferrer">Prof. Eric Paquette</a>.</p>
+            <p>I am interested in all things rendering! In particular:</p>
+            <ul>
+                <li>Production rendering</li>
+                <li>Light transport algorithms</li>
+                <li>High performance graphics</li>
+                <li>Sampling</li>
+            </ul>
+            <p>In my free time, I am currently working on my own "production-style" renderer.</p>
+        </div>
+    </section>
+
+    <section id="publications">
+        <h2>Publications</h2>
+        <div class="pub">
+            <img src="assets/publications/drc/drc_teaser.webp" alt="Deep Residual Combiner teaser">
+            <div>
+                <div class="pub-title">Deep Residual Combiner: A Learned Fusion of Spatial, Temporal, and Multiscale Correlated Pixel Estimates</div>
+                <div class="pub-meta">Computer Graphics Forum (Eurographics 2026)<br>Weijie Zhou, <strong>Euan Hughes</strong>, Toshiya Hachisuka</div>
+                <div class="pub-links"><a href="assets/publications/drc/DRC.pdf" target="_blank" rel="noopener noreferrer">PDF</a> · <a href="https://doi.org/10.1111/cgf.70358" target="_blank" rel="noopener noreferrer">DOI</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-list">
+
+            <div class="project-row">
+                <div class="project-thumb-placeholder">render coming soon</div>
+                <div class="project-info">
+                    <div class="project-title"><a href="projects/mr-sanders/">mr-sanders</a></div>
+                    <p class="project-desc">A production-style Monte Carlo renderer written from scratch in C++20.</p>
+                </div>
+            </div>
+
+            <div class="project-row">
+                <img class="project-thumb" src="projects/stone-skipping/preview.webp" alt="Stone skipping physics simulation" loading="lazy" decoding="async">
+                <div class="project-info">
+                    <div class="project-title"><a href="projects/stone-skipping/">Stone Skipping Physics Simulation</a> <span class="tag">live demo</span></div>
+                    <p class="project-desc">An interactive, real-time, physically-based simulation of a stone skipping on a water surface.</p>
+                </div>
+            </div>
+
+            <div class="project-row">
+                <img class="project-thumb" src="projects/metropolis-visualizer/scenes/thumbs/veach-ajar.webp" alt="Metropolis Light Transport visualizer" loading="lazy" decoding="async">
+                <div class="project-info">
+                    <div class="project-title"><a href="projects/metropolis-visualizer/">Metropolis Light Transport Visualizer</a> <span class="tag">live demo</span></div>
+                    <p class="project-desc">An interactive, real-time, in-browser visualization of Metropolis Light Transport.</p>
+                </div>
+            </div>
+
+            <div class="project-row">
+                <img class="project-thumb" src="projects/rendering-engine/renders/final.webp" alt="Competition-winning render" loading="lazy" decoding="async">
+                <div class="project-info">
+                    <div class="project-title"><a href="projects/rendering-engine/">Research Rendering Engine</a></div>
+                    <p class="project-desc">A from-scratch rendering research playground for prototyping advanced rendering algorithms.</p>
+                </div>
+            </div>
+
+            <div class="project-row">
+                <img class="project-thumb" src="projects/gaussian-pathtracer/renders/vdb.webp" alt="Differentiable 3D Gaussian volumetric pathtracer" loading="lazy" decoding="async">
+                <div class="project-info">
+                    <div class="project-title"><a href="projects/gaussian-pathtracer/">Differentiable 3D Gaussian Volumetric Pathtracer</a></div>
+                    <p class="project-desc">A differentiable volumetric path tracer using 3D Gaussians in a faithful radiative-transfer formulation.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<script>
+    (function () {
+        const gal = document.querySelector('.gal');
+        if (!gal) return;
+        const slides = [...gal.querySelectorAll('.gal-slide')];
+        const fromLink = document.querySelector('.gal-from-link');
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+        let i = 0, timer = null;
+
+        function caption(slide) {
+            if (!fromLink) return;
+            fromLink.textContent = slide.dataset.engine;
+            fromLink.setAttribute('href', slide.dataset.href);
+        }
+        function show(n) {
+            slides[i].classList.remove('is-active');
+            slides[i].setAttribute('aria-hidden', 'true');
+            i = (n + slides.length) % slides.length;
+            slides[i].classList.add('is-active');
+            slides[i].removeAttribute('aria-hidden');
+            caption(slides[i]);
+        }
+        function start() {
+            if (reduce.matches || timer || document.hidden) return;
+            timer = setInterval(() => show(i + 1), 5000);
+        }
+        function stop() { clearInterval(timer); timer = null; }
+        function step(d) { stop(); show(i + d); start(); }
+
+        gal.querySelector('.gal-prev').addEventListener('click', () => step(-1));
+        gal.querySelector('.gal-next').addEventListener('click', () => step(1));
+        document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+        caption(slides[i]);
+        start();
+    })();
+
+    document.getElementById('last-updated').textContent =
+        new Date(document.lastModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+</script>
+</body>
+</html>
