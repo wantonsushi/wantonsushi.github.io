@@ -74,19 +74,20 @@ a:hover { text-decoration: none; }
 .nav-links a:hover { color: var(--text-color); }
 
 .theme-toggle {
+    display: inline-flex;
+    align-items: center;
     padding: 0;
     border: none;
     background: none;
-    font: inherit;
+    font-size: 1rem;
+    line-height: 1;
     color: var(--muted-color);
     cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 2px;
 }
 .theme-toggle:hover { color: var(--text-color); }
-/* The toggle names the mode it switches TO. */
+/* The toggle shows the icon of the mode it switches TO. */
 .theme-toggle .tt-dark { display: none; }
-[data-theme="light"] .theme-toggle .tt-dark { display: inline; }
+[data-theme="light"] .theme-toggle .tt-dark { display: inline-block; }
 [data-theme="light"] .theme-toggle .tt-light { display: none; }
 
 /* Page */
@@ -121,7 +122,8 @@ section h2 {
 .hero-tagline { margin: 8px 0 0; }
 
 .contact-row { margin: 10px 0 0; color: var(--muted-color); font-size: 0.95rem; }
-.contact-row .sep { padding: 0 4px; }
+.contact-row .sep { padding: 0 6px; }
+.contact-row i { margin-right: 6px; font-size: 0.95em; }
 
 .status-line { margin-top: 10px; color: var(--muted-color); max-width: 75ch; }
 .status-line strong { color: var(--text-color); font-weight: 600; }
@@ -262,5 +264,6 @@ section h2 {
         font-size: 0.8rem;
     }
     .nav-links { gap: 10px; }
-    .nav-links a, .theme-toggle { white-space: nowrap; }
+    .nav-links a { white-space: nowrap; }
+    .theme-toggle { font-size: 0.95rem; }
 }

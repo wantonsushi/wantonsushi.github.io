@@ -18,8 +18,8 @@ class SiteNav extends HTMLElement {
             <a href="${home}#publications">Publications</a>
             <a href="${home}#projects">Projects</a>
             <a href="${home}assets/my_CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
-            <button class="theme-toggle" type="button" aria-label="Toggle light/dark theme">
-                <span class="tt-light">Light</span><span class="tt-dark">Dark</span>
+            <button class="theme-toggle" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
+                <i class="fa-solid fa-sun tt-light" aria-hidden="true"></i><i class="fa-solid fa-moon tt-dark" aria-hidden="true"></i>
             </button>
         </div>
     </div>
